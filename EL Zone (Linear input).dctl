@@ -1,0 +1,114 @@
+__DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B) 
+{
+	float3 in_RGB = make_float3(p_R, p_G, p_B);
+    float3 out = in_RGB;
+    float luminance = (p_R*0.2126 + p_G*0.7152 + p_B*0.0722);
+    float mg = 0.18f;
+
+    if (luminance >= (mg*pow(2,6.5))) 
+    {
+        p_R = 255;
+        p_G = 255;
+        p_B = 255;
+    }
+    else if (luminance >= (mg*pow(2,5.5)) && luminance < (mg*pow(2,6.5)))
+    {
+        p_R = 245;
+        p_G = 190;
+        p_B = 192;
+    }
+    else if (luminance >= (mg*pow(2,4.5)) && luminance < (mg*pow(2,5.5)))
+    {
+        p_R = 229;
+        p_G = 126;
+        p_B = 140;
+    }
+    else if (luminance >= (mg*pow(2,3.5)) && luminance < (mg*pow(2,4.5)))
+    {
+        p_R = 255;
+        p_G = 0;
+        p_B = 0;
+    }
+    else if (luminance >= (mg*pow(2,2.5)) && luminance < (mg*pow(2,3.5)))
+    {
+        p_R = 247;
+        p_G = 170;
+        p_B = 71;
+    }
+    else if (luminance >= (mg*pow(2,1.5)) && luminance < (mg*pow(2,2.5)))
+    {
+        p_R = 244;
+        p_G = 112;
+        p_B = 42;
+    }
+    else if (luminance >= (mg*pow(2,0.75)) && luminance < (mg*pow(2,1.5)))
+    {
+        p_R = 255;
+        p_G = 248;
+        p_B = 166;
+    }
+    else if (luminance >= (mg*pow(2,0.25)) && luminance < (mg*pow(2,0.75)))
+    {
+        p_R = 249;
+        p_G = 232;
+        p_B = 0.0;
+    }
+    else if (luminance >= (mg*pow(2,-0.25)) && luminance < (mg*pow(2,0.25)))
+    {
+        p_R = 128;
+        p_G = 128;
+        p_B = 128;
+    }
+    else if (luminance >= (mg*pow(2,-0.75)) && luminance < (mg*pow(2,-0.25)))
+    {
+        p_R = 148;
+        p_G = 200;
+        p_B = 64;
+    }
+    else if (luminance >= (mg*pow(2,-1.5)) && luminance < (mg*pow(2,-0.75)))
+    {
+        p_R = 94;
+        p_G = 186;
+        p_B = 71;
+    }
+    else if (luminance >= (mg*pow(2,-2.5)) && luminance < (mg*pow(2,-1.5)))
+    {
+        p_R = 29;
+        p_G = 167;
+        p_B = 75;
+    }
+    else if (luminance >= (mg*pow(2,-3.5)) && luminance < (mg*pow(2,-2.5)))
+    {
+        p_R = 39;
+        p_G = 174;
+        p_B = 228;
+    }
+    else if (luminance >= (mg*pow(2,-4.5)) && luminance < (mg*pow(2,-3.5)))
+    {
+        p_R = 24;
+        p_G = 116;
+        p_B = 167;
+    }
+    else if (luminance >= (mg*pow(2,-5.5)) && luminance < (mg*pow(2,-4.5)))
+    {
+        p_R = 156;
+        p_G = 126;
+        p_B = 184;
+    }
+    else if (luminance >= (mg*pow(2,-6.5)) && luminance < (mg*pow(2,-5.5)))
+    {
+        p_R = 98;
+        p_G = 71;
+        p_B = 155;
+    }
+    else if (luminance < (mg*pow(2,-6.5)))
+    {
+        p_R = 0;
+        p_G = 0;
+        p_B = 0;
+    }
+
+    out = make_float3(p_R/255, p_G/255, p_B/255);
+
+    return out;
+}
